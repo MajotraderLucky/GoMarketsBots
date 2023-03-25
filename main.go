@@ -254,4 +254,17 @@ func main() {
 	// 	fmt.Println(err)
 	// }
 	// fmt.Println(takeProfitOrder)
+
+	// _, err = futuresClient.NewCancelAllOpenOrdersService().
+	// 	Symbol("BTCUSDT").Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+
+	// err = futuresClient.NewCancelAllOpenOrdersService().
+	// 	Symbol("BTCUSDT").Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
 }
