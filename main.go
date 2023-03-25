@@ -185,6 +185,7 @@ func main() {
 			min = number
 		}
 	}
+	minString := fmt.Sprintf("%.0f", min)
 
 	fmt.Println("Lowest price    =", min)
 
@@ -233,4 +234,14 @@ func main() {
 		return
 	}
 	fmt.Println(limitOrder)
+
+	stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+		Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+		TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(minString).
+		Do(context.Background())
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(stopOrder)
 }
