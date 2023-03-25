@@ -224,7 +224,10 @@ func main() {
 	longFib786String := fmt.Sprintf("%.0f", longFib786)
 	fmt.Println(longFib786String, reflect.TypeOf(longFib786String))
 
-	limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").Price(longFib786String).Do(context.Background())
+	limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+		Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+		TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").
+		Price(longFib786String).Do(context.Background())
 	if err != nil {
 		fmt.Println(err)
 		return
