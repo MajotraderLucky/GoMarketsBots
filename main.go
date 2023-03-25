@@ -176,5 +176,13 @@ func main() {
 			lowSliceFloat64 = append(lowSliceFloat64, nextLowFloat)
 		}
 	}
-	fmt.Println(lowSliceFloat64)
+
+	min := lowSliceFloat64[0]
+	for _, number := range lowSliceFloat64 {
+		if number < min {
+			min = number
+		}
+	}
+
+	fmt.Println("Lowest price    =", min)
 }
