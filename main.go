@@ -11,7 +11,6 @@ import (
 	"time"
 
 	"github.com/adshao/go-binance/v2"
-	"github.com/adshao/go-binance/v2/futures"
 	"github.com/joho/godotenv"
 )
 
@@ -185,7 +184,6 @@ func main() {
 			min = number
 		}
 	}
-	minString := fmt.Sprintf("%.0f", min)
 
 	fmt.Println("Lowest price    =", min)
 
@@ -225,23 +223,35 @@ func main() {
 	longFib786String := fmt.Sprintf("%.0f", longFib786)
 	fmt.Println(longFib786String, reflect.TypeOf(longFib786String))
 
-	limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
-		Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
-		TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").
-		Price(longFib786String).Do(context.Background())
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(limitOrder)
+	// longFib500String := fmt.Sprintf("%.0f", longFib500)
+	// minString := fmt.Sprintf("%.0f", min)
 
-	stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
-		Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
-		TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(minString).
-		Do(context.Background())
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(stopOrder)
+	// limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+	// 	Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+	// 	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").
+	// 	Price(longFib786String).Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println(limitOrder)
+
+	// stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+	// 	Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+	// 	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(minString).
+	// 	Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println(stopOrder)
+
+	// takeProfitOrder, err := futuresClient.NewCreateOrderService().
+	// 	Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+	// 	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib500String).
+	// 	Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Println(takeProfitOrder)
 }
