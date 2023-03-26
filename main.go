@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"math"
 	"os"
-	"reflect"
 	"strconv"
 	"time"
 
@@ -221,7 +221,14 @@ func main() {
 	fmt.Println("long Fibo 786 =", longFib786)
 
 	longFib786String := fmt.Sprintf("%.0f", longFib786)
-	fmt.Println(longFib786String, reflect.TypeOf(longFib786String))
+	fmt.Println(longFib786String)
+
+	priceCorridor := max - min
+	fmt.Println("----------------------")
+	fmt.Println("Price corridor    =", priceCorridor)
+	priceCorridorPercent := ((max - min) / max) * 100
+	fmt.Print("Price corridor(%) = ", math.Round(priceCorridorPercent*100)/100, "%\n")
+	fmt.Println("----------------------")
 
 	// longFib500String := fmt.Sprintf("%.0f", longFib500)
 	// minString := fmt.Sprintf("%.0f", min)
@@ -268,14 +275,14 @@ func main() {
 	// 	fmt.Println(err)
 	// }
 
-	openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("BTCUSDT").
-		Do(context.Background())
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	for _, o := range openOrders {
-		fmt.Println(o.OrderID, reflect.TypeOf(o.OrderID))
-		fmt.Println(o.Price)
-	}
+	// openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("BTCUSDT").
+	// 	Do(context.Background())
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// for _, o := range openOrders {
+	// 	fmt.Println(o.OrderID, reflect.TypeOf(o.OrderID))
+	// 	fmt.Println(o.Price)
+	// }
 }
