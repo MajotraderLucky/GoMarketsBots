@@ -386,6 +386,7 @@ func main() {
 			openPosition = false
 		}
 
+		// Level 382 open orders
 		var startTradeTo382 = false
 		if priceAbove382 == true && startTrade == true && openPosition == false {
 			startTradeTo382 = true
@@ -436,6 +437,150 @@ func main() {
 			takeProfitOrder, err := futuresClient.NewCreateOrderService().
 				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
 				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib236String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(takeProfitOrder)
+		}
+
+		// Level 500 open orders
+		var startTradeTo500 = false
+		if priceAbove500 == true && startTrade == true && openPosition == false {
+			startTradeTo500 = true
+		} else {
+			startTradeTo500 = false
+		}
+		fmt.Println("Start trade to level 500 =", startTradeTo500)
+
+		if len(openOrders) == 0 && startTradeTo500 == true {
+			fmt.Println(len(openOrders), "orders have been opened")
+			longFib500String := fmt.Sprintf("%.0f", longFib500)
+			limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.002").
+				Price(longFib500String).Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(limitOrder)
+		}
+
+		if len(openOrders) == 1 && startTradeTo500 == true {
+			longFib618String := fmt.Sprintf("%.0f", longFib618)
+			stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.002").StopPrice(longFib618String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(stopOrder)
+		}
+
+		if len(openOrders) == 2 && startTradeTo500 == true {
+			longFib382String := fmt.Sprintf("%.0f", longFib382)
+			takeProfitOrder, err := futuresClient.NewCreateOrderService().
+				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.002").StopPrice(longFib382String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(takeProfitOrder)
+		}
+
+		// Level 618 open orders
+		var startTradeTo618 = false
+		if priceAbove618 == true && startTrade == true && openPosition == false {
+			startTradeTo618 = true
+		} else {
+			startTradeTo618 = false
+		}
+		fmt.Println("Start trade to level 618 =", startTradeTo618)
+
+		if len(openOrders) == 0 && startTradeTo618 == true {
+			fmt.Println(len(openOrders), "orders have been opened")
+			longFib618String := fmt.Sprintf("%.0f", longFib618)
+			limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.003").
+				Price(longFib618String).Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(limitOrder)
+		}
+
+		if len(openOrders) == 1 && startTradeTo618 == true {
+			longFib786String := fmt.Sprintf("%.0f", longFib786)
+			stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.003").StopPrice(longFib786String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(stopOrder)
+		}
+
+		if len(openOrders) == 2 && startTradeTo618 == true {
+			longFib500String := fmt.Sprintf("%.0f", longFib500)
+			takeProfitOrder, err := futuresClient.NewCreateOrderService().
+				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.003").StopPrice(longFib500String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(takeProfitOrder)
+		}
+
+		// Level 786 open orders
+		var startTradeTo786 = false
+		if priceAbove786 == true && startTrade == true && openPosition == false {
+			startTradeTo786 = true
+		} else {
+			startTradeTo786 = false
+		}
+		fmt.Println("Start trade to level 786", startTradeTo786)
+
+		if len(openOrders) == 0 && startTradeTo786 == true {
+			fmt.Println(len(openOrders), "orders have been opened")
+			longFib786String := fmt.Sprintf("%.0f", longFib786)
+			limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.005").
+				Price(longFib786String).Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(limitOrder)
+		}
+
+		if len(openOrders) == 1 && startTradeTo786 == true {
+			minString := fmt.Sprintf("%.0f", min)
+			stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.005").StopPrice(minString).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(stopOrder)
+		}
+
+		if len(openOrders) == 2 && startTradeTo786 == true {
+			longFib618String := fmt.Sprintf("%.0f", longFib618)
+			takeProfitOrder, err := futuresClient.NewCreateOrderService().
+				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.005").StopPrice(longFib618String).
 				Do(context.Background())
 			if err != nil {
 				fmt.Println(err)
