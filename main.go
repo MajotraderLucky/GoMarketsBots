@@ -394,17 +394,6 @@ func main() {
 		}
 		fmt.Println("Start trade to level 382 =", startTradeTo382)
 
-		longFib382String := fmt.Sprintf("%.0f", longFib382)
-		limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
-			Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
-			TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").
-			Price(longFib382String).Do(context.Background())
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println(limitOrder)
-
 		openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("BTCUSDT").
 			Do(context.Background())
 		if err != nil {
@@ -415,8 +404,43 @@ func main() {
 			fmt.Println(o)
 			fmt.Println(len(openOrders), "orders have been opened")
 		}
-		if len(openOrders) == 0 {
+		if len(openOrders) == 0 && startTradeTo382 == true {
 			fmt.Println(len(openOrders), "orders have been opened")
+			longFib382String := fmt.Sprintf("%.0f", longFib382)
+			limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeBuy).Type(futures.OrderTypeLimit).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").
+				Price(longFib382String).Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(limitOrder)
+		}
+
+		if len(openOrders) == 1 && startTradeTo382 == true {
+			longFib500String := fmt.Sprintf("%.0f", longFib500)
+			stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+				Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib500String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+			fmt.Println(stopOrder)
+		}
+
+		if len(openOrders) == 2 && startTradeTo382 == true {
+			longFib236String := fmt.Sprintf("%.0f", longFib236)
+			takeProfitOrder, err := futuresClient.NewCreateOrderService().
+				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+				TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib236String).
+				Do(context.Background())
+			if err != nil {
+				fmt.Println(err)
+			}
+			fmt.Println(takeProfitOrder)
 		}
 	}
 }

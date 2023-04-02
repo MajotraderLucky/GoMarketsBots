@@ -11,24 +11,24 @@
 // }
 // fmt.Println(limitOrder)
 
-// stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
-// 	Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
-// 	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(minString).
-// 	Do(context.Background())
-// if err != nil {
-// 	fmt.Println(err)
-// 	return
-// }
-// fmt.Println(stopOrder)
+stopOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
+	Side(futures.SideTypeSell).Type(futures.OrderTypeStopMarket).
+	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(minString).
+	Do(context.Background())
+if err != nil {
+	fmt.Println(err)
+	return
+}
+fmt.Println(stopOrder)
 
-// takeProfitOrder, err := futuresClient.NewCreateOrderService().
-// 	Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
-// 	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib500String).
-// 	Do(context.Background())
-// if err != nil {
-// 	fmt.Println(err)
-// }
-// fmt.Println(takeProfitOrder)
+takeProfitOrder, err := futuresClient.NewCreateOrderService().
+	Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
+	TimeInForce(futures.TimeInForceTypeGTC).Quantity("0.001").StopPrice(longFib500String).
+	Do(context.Background())
+if err != nil {
+	fmt.Println(err)
+}
+fmt.Println(takeProfitOrder)
 
 // _, err = futuresClient.NewCancelAllOpenOrdersService().
 // 	Symbol("BTCUSDT").Do(context.Background())
