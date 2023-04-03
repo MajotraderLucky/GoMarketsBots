@@ -37,21 +37,21 @@ fmt.Println(takeProfitOrder)
 // 	return
 // }
 
-// err = futuresClient.NewCancelAllOpenOrdersService().
-// 	Symbol("BTCUSDT").Do(context.Background())
-// if err != nil {
-// 	fmt.Println(err)
-// }
+err = futuresClient.NewCancelAllOpenOrdersService().
+	Symbol("BTCUSDT").Do(context.Background())
+if err != nil {
+	fmt.Println(err)
+}
 
-// openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("BTCUSDT").
-// 	Do(context.Background())
-// if err != nil {
-// 	fmt.Println(err)
-// 	return
-// }
-// for _, o := range openOrders {
-// 	fmt.Println(o.OrderID, reflect.TypeOf(o.OrderID))
-// 	fmt.Println(o.Price)
-// }
+openOrders, err := futuresClient.NewListOpenOrdersService().Symbol("BTCUSDT").
+	Do(context.Background())
+if err != nil {
+	fmt.Println(err)
+	return
+}
+for _, o := range openOrders {
+	fmt.Println(o.OrderID, reflect.TypeOf(o.OrderID))
+	fmt.Println(o.Price)
+}
 
 // fmt.Println(futuresClient.NewGetAccountService().Do(context.Background()))

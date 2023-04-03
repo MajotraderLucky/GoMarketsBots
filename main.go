@@ -547,7 +547,7 @@ func main() {
 		} else {
 			startTradeTo786 = false
 		}
-		fmt.Println("Start trade to level 786", startTradeTo786)
+		fmt.Println("Start trade to level 786 =", startTradeTo786)
 
 		if len(openOrders) == 0 && startTradeTo786 == true {
 			fmt.Println(len(openOrders), "orders have been opened")
@@ -586,6 +586,23 @@ func main() {
 				fmt.Println(err)
 			}
 			fmt.Println(takeProfitOrder)
+		}
+
+		var openOrderSize []string
+
+		for _, o := range openOrders {
+			openOrderSize = append(openOrderSize, o.OrigQuantity)
+		}
+		fmt.Println(openOrderSize)
+		for x, y := range openOrders {
+			if y != openOrders[x] {
+				fmt.Println("The order sizes are not equal")
+				err = futuresClient.NewCancelAllOpenOrdersService().
+					Symbol("BTCUSDT").Do(context.Background())
+				if err != nil {
+					fmt.Println(err)
+				}
+			}
 		}
 	}
 }
