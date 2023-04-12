@@ -224,9 +224,6 @@ func main() {
 		longFib786 := max - ((max - min) * 0.786)
 		fmt.Println("long Fibo 786 =", longFib786)
 
-		longFib786String := fmt.Sprintf("%.0f", longFib786)
-		fmt.Println(longFib786String)
-
 		priceCorridor := max - min
 		fmt.Println("----------------------")
 		fmt.Println("Price corridor    =", priceCorridor)
@@ -385,7 +382,6 @@ func main() {
 		} else {
 			openPosition = false
 		}
-
 		// Level 382 open orders
 		var startTradeTo382 = false
 		if priceAbove382 == true && startTrade == true && openPosition == false {
@@ -432,7 +428,9 @@ func main() {
 			fmt.Println(stopOrder)
 		}
 
-		if len(openOrders) == 2 && startTradeTo382 == true {
+		var takeProfit382Condition bool = positionSizeFloat != 0 && len(openOrders) == 1 && priceAbove382 == true
+
+		if takeProfit382Condition {
 			longFib236String := fmt.Sprintf("%.0f", longFib236)
 			takeProfitOrder, err := futuresClient.NewCreateOrderService().
 				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
@@ -604,5 +602,6 @@ func main() {
 				}
 			}
 		}
+		fmt.Println("*******************************************")
 	}
 }
