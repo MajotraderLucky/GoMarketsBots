@@ -478,7 +478,9 @@ func main() {
 			fmt.Println(stopOrder)
 		}
 
-		if len(openOrders) == 2 && startTradeTo500 == true {
+		var takeProfit500Condition bool = positionSizeFloat != 0 && len(openOrders) == 1 && priceAbove500 == true
+
+		if takeProfit500Condition {
 			longFib382String := fmt.Sprintf("%.0f", longFib382)
 			takeProfitOrder, err := futuresClient.NewCreateOrderService().
 				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
@@ -526,7 +528,9 @@ func main() {
 			fmt.Println(stopOrder)
 		}
 
-		if len(openOrders) == 2 && startTradeTo618 == true {
+		var takeProfit618Condition bool = positionSizeFloat != 0 && len(openOrders) == 1 && priceAbove618 == true
+
+		if takeProfit618Condition {
 			longFib500String := fmt.Sprintf("%.0f", longFib500)
 			takeProfitOrder, err := futuresClient.NewCreateOrderService().
 				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
@@ -574,7 +578,9 @@ func main() {
 			fmt.Println(stopOrder)
 		}
 
-		if len(openOrders) == 2 && startTradeTo786 == true {
+		var takeProfit786Condition bool = positionSizeFloat != 0 && len(openOrders) == 1 && priceAbove786 == true
+
+		if takeProfit786Condition {
 			longFib618String := fmt.Sprintf("%.0f", longFib618)
 			takeProfitOrder, err := futuresClient.NewCreateOrderService().
 				Symbol("BTCUSDT").Side(futures.SideTypeSell).Type(futures.OrderTypeTakeProfitMarket).
