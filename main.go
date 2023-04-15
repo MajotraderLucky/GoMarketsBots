@@ -438,6 +438,7 @@ func main() {
 				Do(context.Background())
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 			fmt.Println(takeProfitOrder)
 		}
@@ -488,6 +489,7 @@ func main() {
 				Do(context.Background())
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 			fmt.Println(takeProfitOrder)
 		}
@@ -538,6 +540,7 @@ func main() {
 				Do(context.Background())
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 			fmt.Println(takeProfitOrder)
 		}
@@ -588,6 +591,7 @@ func main() {
 				Do(context.Background())
 			if err != nil {
 				fmt.Println(err)
+				return
 			}
 			fmt.Println(takeProfitOrder)
 		}
