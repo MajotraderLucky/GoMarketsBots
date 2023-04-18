@@ -401,7 +401,7 @@ func main() {
 			fmt.Println(o)
 			fmt.Println(len(openOrders), "orders have been opened")
 		}
-		if len(openOrders) == 0 && startTradeTo382 == true {
+		if len(openOrders) == 0 && startTradeTo382 {
 			fmt.Println(len(openOrders), "orders have been opened")
 			longFib382String := fmt.Sprintf("%.0f", longFib382)
 			limitOrder, err := futuresClient.NewCreateOrderService().Symbol("BTCUSDT").
