@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"math"
 	"os"
@@ -243,7 +242,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		err = ioutil.WriteFile("fileJson.json", fileJson, 0644)
+		err = os.WriteFile("fileJson.json", fileJson, 0644)
 		if err != nil {
 			panic(err)
 		}
